@@ -1,3 +1,5 @@
+#:kivy 1.10.0
+
 YToolRoot:
 
 <YToolRoot>:                
@@ -17,55 +19,34 @@ YToolRoot:
         Rectangle:
             pos: self.pos
             size: self.size
-    Label:
-        id: LeftMenuController-full
-        text: u'\uF0C9'
-        font_name: 'fontawesome-webfont_1.ttf'
-        font_size: 20
-    Label:
-        id: LeftMenuController-mini
-        text: u'\uF142'
-        font_name: 'fontawesome-webfont_1.ttf'
-        font_size: 24
-    Label:
-        id: pdf-handler
-        height: '64dp'
+    Button:
+        id: leftnaviswitcher
         size_hint_y: None
-        text: u'\uF1C1'
+        height: '48dp'
+        #background_normal: ''
+        background_color: root.bcolor   
+        #background_down: ''
+        text: root.navimenuswitcher
         font_name: 'fontawesome-webfont_1.ttf'
-        font_size: 24
-        on_ref_press: root.leftNavi_goto('pdf')
-    Label:
-        id: photo-handler
-        height: '64dp'
-        size_hint_y: None
-        text: u'\uF1C5'
-        font_name: 'fontawesome-webfont_1.ttf'
-        font_size: 24
-        font_color: 1, 1, 1, 1
-    Label:
-        id: LeftNaviExpander
-        text: u'\uE700'
-        font_name: 'segmdl2.ttf'
-        font_size: 24
-    Label:
-        text: u'\uF013'
-        font_name: 'fontawesome-webfont_1.ttf'
-        font_size: 20
-    Label:
-        id: Settings
-        text: u'\uE115'
-        font_name: 'segmdl2.ttf'
-        font_size: 24
-        on_ref_press: root.leftNavi_goto('settings')
+        font_size: 18
+        on_press: root.naviMenuSwitch()
     Button:
         background_normal: ''
-        background_color: 0.2, 0.2, 0.2, 1   
+        background_color: root.bcolor   
         background_down: ''
-        text: u'\uE115'
-        font_name: 'segmdl2.ttf'
-        font_size: 24
-        on_press: app.root.children[1].populate()
+        text: u'\uF143'
+        font_name: 'fontawesome-webfont_1.ttf'
+        font_size: 18
+    Button:
+        background_normal: ''
+        background_color: root.bcolor   
+        background_down: ''
+        text: u'\uF013'
+        font_name: 'fontawesome-webfont_1.ttf'
+        font_size: 18
+    
+        
+    
 
 <ListSection@BoxLayout>:
     id: leftListSection
@@ -100,7 +81,7 @@ YToolRoot:
             orientation: 'vertical'
             spacing: dp(2)
 
-<ContentSection>:
+<ContentSection@BoxLayout>:
     bcolor: 0.118, 0.118, 0.118, 1
     canvas.before:
         Color:

@@ -1,0 +1,9 @@
+# VS Code folder
+.vscode
+
+# temp files
+temp
+basic_data.py
+
+# font files
+*.ttf

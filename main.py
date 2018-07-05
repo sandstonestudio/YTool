@@ -1,3 +1,5 @@
+#-*- coding: utf-8 -*-
+
 from random import sample
 from string import ascii_lowercase
 
@@ -6,54 +8,39 @@ kivy.require('1.10.0')
 
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import ObjectProperty
-from kivy.factory import Factory
+from kivy.properties import StringProperty
+from kivy.properties import BooleanProperty
+
 
 class LeftNavi(BoxLayout):
-    def printwidget(self):
-        print('LeftNavi widget is called!')
+    navimenuswitcher = StringProperty()
+    is_navimenuExpand = BooleanProperty()
 
-    def populate(self):
-        print('LeftNavi test button is called!')
-        #self.root.children[1].populate()
-        #app.root.listSection.populate()
-    
-    def leftNavi_goto(self, itemname):
-        print('LeftNavi LABEL:{} is called!'.format(itemname))
+    def __init__(self, **kwargs):
+        super(LeftNavi, self).__init__(**kwargs)
+        self.navimenuswitcher = str(u'\uF142')
+        self.is_navimenuExpand = bool(False)
+
+    def naviMenuSwitch(self):
+        if self.is_navimenuExpand:
+            self.navimenuswitcher = str(u'\uF142')
+            self.is_navimenuExpand = False
+        else:
+            self.navimenuswitcher = str(u'\uF0C9')
+            self.is_navimenuExpand = True
+        
+        
 
 class ListSection(BoxLayout):
-    def printwidget(self):
-        print('ListSection widget is called!')
-
     def populate(self):
         self.rv.data = [{'value': ''.join(sample(ascii_lowercase, 6))}
                         for x in range(50)]
 
-    def sort(self):
-        self.rv.data = sorted(self.rv.data, key=lambda x: x['value'])
-
-    def clear(self):
-        self.rv.data = []
-
-    def insert(self, value):
-        self.rv.data.insert(0, {'value': value or 'default value'})
-
-    def update(self, value):
-        if self.rv.data:
-            self.rv.data[0]['value'] = value or 'default new value'
-            self.rv.refresh_from_data()
-
-    def remove(self):
-        if self.rv.data:
-            self.rv.data.pop(0)
-
 class ContentSection(BoxLayout):
-    def printwidget(self):
-        print('ContentSection widget is called!')
+    pass
 
 class YToolRoot(BoxLayout):
-    def printwidget(self):
-        print('YToolRoot widget is called!')
+    pass
 
 
 
