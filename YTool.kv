@@ -1,0 +1,123 @@
+YToolRoot:
+
+<YToolRoot>:                
+    LeftNavi
+    ListSection
+    ContentSection
+
+<LeftNavi@BoxLayout>:    
+    id: leftNaviSection
+    orientation: 'vertical'    
+    width: '48dp'
+    size_hint_x: None
+    bcolor: 0.2, 0.2, 0.2, 1
+    canvas.before:
+        Color:
+            rgba: self.bcolor
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+        id: LeftMenuController-full
+        text: u'\uF0C9'
+        font_name: 'fontawesome-webfont_1.ttf'
+        font_size: 20
+    Label:
+        id: LeftMenuController-mini
+        text: u'\uF142'
+        font_name: 'fontawesome-webfont_1.ttf'
+        font_size: 24
+    Label:
+        id: pdf-handler
+        height: '64dp'
+        size_hint_y: None
+        text: u'\uF1C1'
+        font_name: 'fontawesome-webfont_1.ttf'
+        font_size: 24
+        on_ref_press: root.leftNavi_goto('pdf')
+    Label:
+        id: photo-handler
+        height: '64dp'
+        size_hint_y: None
+        text: u'\uF1C5'
+        font_name: 'fontawesome-webfont_1.ttf'
+        font_size: 24
+        font_color: 1, 1, 1, 1
+    Label:
+        id: LeftNaviExpander
+        text: u'\uE700'
+        font_name: 'segmdl2.ttf'
+        font_size: 24
+    Label:
+        text: u'\uF013'
+        font_name: 'fontawesome-webfont_1.ttf'
+        font_size: 20
+    Label:
+        id: Settings
+        text: u'\uE115'
+        font_name: 'segmdl2.ttf'
+        font_size: 24
+        on_ref_press: root.leftNavi_goto('settings')
+    Button:
+        background_normal: ''
+        background_color: 0.2, 0.2, 0.2, 1   
+        background_down: ''
+        text: u'\uE115'
+        font_name: 'segmdl2.ttf'
+        font_size: 24
+        on_press: app.root.children[1].populate()
+
+<ListSection@BoxLayout>:
+    id: leftListSection
+    orientation: 'vertical' 
+    width: '240dp'
+    size_hint_x: None
+    bcolor: 0.15, 0.15, 0.15, 1
+    rv:rv
+    canvas.before:
+        Color:
+            rgba: self.bcolor
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    
+    Label:
+        text: 'ListSection'
+    Button:
+        text: 'Populate list'
+        on_press: root.populate()
+    RecycleView:
+        id: rv
+        scroll_type: ['bars', 'content']
+        scroll_wheel_distance: dp(114)
+        bar_width: dp(10)
+        viewclass: 'Row'
+        RecycleBoxLayout:
+            default_size: None, dp(56)
+            default_size_hint: 1, None
+            size_hint_y: None
+            height: self.minimum_height
+            orientation: 'vertical'
+            spacing: dp(2)
+
+<ContentSection>:
+    bcolor: 0.118, 0.118, 0.118, 1
+    canvas.before:
+        Color:
+            rgba: self.bcolor
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+        text: 'ContentSection'
+    
+<Row@BoxLayout>:
+    canvas.before:
+        Color:
+            rgba: 0.5, 0.5, 0.5, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    value: ''
+    Label:
+        text: root.value
